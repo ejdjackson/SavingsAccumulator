@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Grid with Dynamic Chart Example</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom Styles -->
+    <style>
+        /* Set a fixed height for both the input form and graph container */
+        .fixed-height {
+            height: 800px; 
+            
+        }
+        #Graph {
+            width: 100% !important; /* Ensure the chart uses full width of the container */
+            height: 100% !important; /* Set height to fill the container */
+        }
+        #chartContainer {
+            height: 800px;  /* Fixed height for the graph frame */
+        }
+        .income-box {
+            display: flex; /* Use Flexbox for the container */
+            justify-content: space-between; /* Evenly space the children */
+            padding: 10px 0; /* Optional padding for spacing */
+        }
+
+        .income-item {
+            flex: 1; /* Each item takes equal space */
+            text-align: center; /* Center text within each item */
+            padding: 10px; /* Optional padding inside each item */
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- First Column (Now Smaller) -->
+            <div class="col-md-3 fixed-height"> <!-- Set to occupy 4 out of 12 columns and fixed height -->
+                <!-- Pension Inputs in First Column -->
+                <div class="p-3 mb-3 border bg-light">
+                    <h3>Inputs</h3>
+                    <form id="projectionForm">
+                        <label for="monthlySaving">Monthly Saving (£): </label>
+                        <input type="number" id="monthlySaving" required><br><br>
+                        
+                        <label for="currentFund">Current Fund (£): </label>
+                        <input type="number" id="currentFund" required><br><br>
+                        
+                        <label for="interestRate">Annual Interest Rate (%): </label>
+                        <input type="number" id="interestRate" step="0.01" required><br><br>
+                        
+                        <label for="projectionYear">Projection Year: </label>
+                        <input type="number" id="projectionYear" required><br><br>
+                        
+                        <button type="button" class="btn btn-primary" onclick="calculateProjection()">Calculate Projection</button>
+                        
+                    </form>
+                </div>
+            </div>
+
+            <!-- Second Column (Now Wider) -->
+            
+            <div class="col-md-9 fixed-height"> <!-- Set to occupy 8 out of 12 columns and fixed height -->
+
+                <div id="result" class="p-3 mb-3 border bg-light d-none"> 
+
+                    <div class="container hidden mt-4" id="result">
+                        <h2>Result</h2>
+                        <div id="resultContent"></div>
+                    </div>
+    
+                   
+                </div>
+
+                <!-- Second Row for the graph -->
+                <div id="chartContainer" class="p-3 mb-3 border bg-light d-none"> <!-- Initially hidden -->
+                    <h3>Savings Accumulation</h3>
+                    <canvas id="Graph"></canvas> <!-- Canvas for the third graph -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Link to External JavaScript File -->
+    <script src="app.js"></script>
+</body>
+</html>
